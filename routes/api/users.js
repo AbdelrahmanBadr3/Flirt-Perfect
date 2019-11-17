@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
-const uuid = require('uuid');
+// /const uuid = require('uuid');
 
 //Getting all users
-router.get('/', (req, res) => {
+router.get('/',async (req, res) => {
     const users=await User.find();
     res.json({ data: users })
 });
@@ -31,11 +31,13 @@ router.post('/', async(req, res) => {
     const password = req.body.password;
     const email = req.body.email;
     const gender = req.body.gender;
+    const dateOFBrith = req.body.dateOFBrith;
     const newUser = {
 		name,
         password,
         email,
-        gender
+        gender,
+        dateOFBrith
 		//id: uuid.v4(),
     };
     const dbUser= await User.create(newUser);

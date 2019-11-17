@@ -15,7 +15,7 @@ const UsersSchema = new Schema({
 
 },{_id:false});
 
-const Answer = new Schema({
+const QiuzSchema = new Schema({
     sequence:{
         type:String,
         required:true
@@ -23,4 +23,6 @@ const Answer = new Schema({
     users:[UsersSchema]
 });
 
-module.exports = answer = mongoose.model('answers', Answer);
+
+const Quiz= mongoose.model('quizzes', QiuzSchema)
+module.exports = Quiz

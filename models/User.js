@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const User = new Schema({
+const UserSchema = new Schema({
     name:{
         type:String,
         required:true
@@ -25,7 +25,7 @@ const User = new Schema({
         type:Date,
         required:true
     },
-    isActiveted:{
+    isActivated:{
         type:Boolean,
         default:false
     },
@@ -35,12 +35,12 @@ const User = new Schema({
     },
     answerID:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true
+        required:false
     }
 
 
 });
 
 
-
-module.exports = user = mongoose.model('users', User);
+const User= mongoose.model('users', UserSchema)
+module.exports = User
