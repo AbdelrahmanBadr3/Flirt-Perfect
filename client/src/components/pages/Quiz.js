@@ -16,7 +16,9 @@ class Quiz extends Component {
       questions:[],
       answers:[[]],
       sequence:[],
-      currentQuestion:0
+      currentQuestion:0,
+      users:[],
+      currentUserID:'5dd4552460124e107a6057f5'
     }
     this.onChange = this.onChange.bind(this)
     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +27,7 @@ class Quiz extends Component {
     const workingUrl=`http://localhost:3333/routes/api/questions`
     axios.get(workingUrl).then(res =>{
     var tempQuestions=[]
-    var tempAnswers=[]
+    var tempAnswers=    []
     res.data.data.forEach(element => {
       tempQuestions.push(element.question)
       tempAnswers.push(element.answers)
@@ -58,7 +60,7 @@ class Quiz extends Component {
   displayQuestions(){
     if(this.state.currentQuestion<10){
 return(<div>
-<ToggleButtonGroup name="qut" type="radio" value={this.state.value} onChange={this.onChange}>
+<ToggleButtonGroup name="quiz" type="radio" value={this.state.value} onChange={this.onChange}>
     
 <ToggleButton value={1} >{this.state.answers[this.state.currentQuestion][0]}</ToggleButton>
 <br />
@@ -72,24 +74,18 @@ return(<div>
 </div>
 );
     }else{
+      const tempCurrent= this.state.currentQuestion+1;
+      this.setState({ currentQuestion: tempCurrent })
       const workingUrl=`http://localhost:3333/routes/api/quizzes`
       const id ='5dd4552460124e107a6057f5';
-      var matching=[];
       axios.post(workingUrl+`/${id}`,{sequence:this.state.sequence}).then(res =>{
-      matching=res.data.data.users; 
-      console.log(res.data)
-      var temp;
-      matching.forEach(user=>{
-      if(user._id!==id)
-      temp.push(<div><p>{user.name}</p> <br/></div>);
-      })
-      console.log(matching)  
-      console.log(temp)  
+      this.setState({users: res.data.data.users})
+      console.log(res.data.msg)
+      
+      //console.log(matching)  
+      //console.log(temp)  
 
-      return(<div>
-      {temp}
-      </div>
-        )
+     
       }
       ).catch(e => {
          console.log(e)
@@ -97,15 +93,31 @@ return(<div>
 
     }
   }
-  
+  display(){
+    if(this.state.currentQuestion<=10)
+    return this.displayQuestions();
+    else{
+      var temp=[]
+      this.state.users.forEach(user=>{
+        let i=1;
+        if(user._id!==this.state.currentUserID){
+        temp.push(<div key={i}><p>{user.name}</p> <br/></div>)
+        i++;
+      }
+        })
+        return temp
+    }
+
+  } 
   render(){
     
     return (
   <div className="Quiz">
+    
     <Card className="text-center">
     <Card.Header>{this.state.questions[this.state.currentQuestion]}</Card.Header>
     <Card.Body>
-      {this.displayQuestions()}
+      {this.display()}
     </Card.Body>
   
     </Card>
