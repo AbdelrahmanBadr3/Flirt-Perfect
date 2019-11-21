@@ -4,10 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"dependencies": {
-		"@material-ui/core": "^3.9.3",
-		"@material-ui/icons": "^3.0.2",
 		"axios": "^0.18.0",
-		"babel-jest": "^23.6.0",
+		"babel-jest": "^24.9.0",
+
 		"bcrypt": "^3.0.5",
 		"bcryptjs": "^2.4.3",
 		"bootstrap": "^4.3.1",
@@ -17,7 +16,8 @@
 		"crypto-js": "^3.1.9-1",
 		"express": "^4.16.4",
 		"i": "^0.3.6",
-		"jest": "^23.6.0",
+		"jest": "24.9.0",
+
 		"jest-cli": "^24.5.0",
 		"joi": "^14.3.1",
 		"joi-objectid": "^2.0.0",
