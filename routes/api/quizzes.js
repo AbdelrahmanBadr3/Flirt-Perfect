@@ -36,6 +36,7 @@ router.post('/:id', async(req, res) => {
     }
     console.log("hello there")
 
+
     const quizAfterAnswer = await Quiz.findOne({sequence})
 
     return res.json({ msg:"Quiz was created successfully" ,data: quizAfterAnswer });}

@@ -15,6 +15,7 @@ mongoose
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
       });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -29,4 +30,5 @@ app.use((req, res) => {
 });
 
 const port = process.env.PORT || 3333;
+
 app.listen(port, () => console.log(`Server up and running on port ${port}`));

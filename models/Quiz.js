@@ -18,6 +18,7 @@ const UsersSchema = new Schema({
 const QiuzSchema = new Schema({
     sequence:{
         type:[Number],
+
         required:true
     },
     users:[UsersSchema]
