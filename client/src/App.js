@@ -1,6 +1,8 @@
 import React ,{Component}from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import Quiz from './components/pages/Quiz'
+import Login from './components/pages/LoginTest'
+import { connect } from 'react-redux'
 
 //import { connect } from 'react-redux'
 
@@ -15,7 +17,8 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-               <Route exact path="/quiz" component={Quiz} />
+             {  <Route exact path="/quiz" component={Quiz} />}
+               <Route exact path="/" component={Login} />
         </Router>
 
       </div>
@@ -23,4 +26,10 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, {})(App);
+
