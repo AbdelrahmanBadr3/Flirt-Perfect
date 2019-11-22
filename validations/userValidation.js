@@ -10,9 +10,10 @@ module.exports = {
             email: Joi.string().required().email().min(3).max(254),
 			gender:Joi.string().required().valid('MALE', 'FEMALE','NOTSPECIFED'),
 			dateOfBirth: Joi.date().required(),
-            isActivated:joi.boolean(),
-            isOnline:joi.boolean(),
-			answerID:joi.objectId()
+            isActivated:Joi.boolean(),
+            isOnline:Joi.boolean(),
+			answerID:Joi.objectId()
+
 			//resetPasswordToken: Joi.string(),
 			//resetPasswordExpires: Joi.date()
 		};
