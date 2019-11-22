@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+
 var jwt_decode = require('jwt-decode');
 const userValidator = require('../../validations/userValidation');
 const bcrypt = require('bcryptjs');
@@ -8,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const tokenKey = require('../../config/keys_dev').secretOrKey;
 const passport = require('passport');
 require('../../config/passport')(passport);
+
 // /const uuid = require('uuid');
 
 //Getting all users
@@ -24,13 +26,13 @@ router.get('/SpecificUser', passport.authenticate('jwt', { session: false }), as
     const user = await User.findById(userID)
     if(!user) return res.status(404).send({error: 'User does not exist'})
     return res.json({ msg:"User was fetched successfully" ,data: user })
+
     }
    catch(error)
    {
        console.log(error)
    }
 })
-
 
 
 //Creating new User
@@ -63,6 +65,7 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
     try {
    //   const id = req.params.id
     const userID=req.user.id
+
      const user = await User.findById(userID)
      if(!user) return res.status(404).send({error: 'User does not exist'})
      const updatedUser = await User.findByIdAndUpdate({_id : userID},req.body)
@@ -75,9 +78,11 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
  })
 
  //Deleting a user
+
  router.delete('/SpecificUser', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
      const userID = req.user.id
+
      const deletedUser = await User.findByIdAndRemove(userID)
      res.json({msg:'User was deleted successfully', data: deletedUser})
     }
@@ -147,6 +152,7 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
 		else return res.status(400).send({ password: 'Wrong password',msg:"wrong password" });
 	} catch (e) {}
 });
+
 
 
 module.exports = router;

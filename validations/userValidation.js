@@ -13,6 +13,7 @@ module.exports = {
             isActivated:Joi.boolean(),
             isOnline:Joi.boolean(),
 			answerID:Joi.objectId()
+
 			//resetPasswordToken: Joi.string(),
 			//resetPasswordExpires: Joi.date()
 		};
