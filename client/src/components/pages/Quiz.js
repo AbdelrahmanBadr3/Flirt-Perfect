@@ -1,5 +1,7 @@
 import React ,{Component}from 'react';
 import axios from "axios";
+import { connect } from 'react-redux'
+import {addTOSequence,setAnswer } from '../../globalStore/actions/quizActions'
 
 
 import {Card,Button,ToggleButtonGroup,ToggleButton} from 'react-bootstrap'
@@ -18,30 +20,25 @@ class Quiz extends Component {
       sequence:[],
       currentQuestion:0,
       users:[],
-      currentUserID:'5dd4552460124e107a6057f5'
+      //currentUserID:'5dd4552460124e107a6057f5'
     }
     this.onChange = this.onChange.bind(this)
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    const workingUrl=`http://localhost:3333/routes/api/questions`
-    axios.get(workingUrl).then(res =>{
     var tempQuestions=[]
     var tempAnswers=    []
-    res.data.data.forEach(element => {
+    this.props.quiz.questions.forEach(element => {
       tempQuestions.push(element.question)
       tempAnswers.push(element.answers)
     });
     this.setState({questions:tempQuestions})
     this.setState({answers:tempAnswers})
 
-    console.log(this.state.questions)
-    console.log(this.state.answers[0][0])
+   // console.log(this.state.questions)
+   // console.log(this.state.answers[0][0])
 
-    }
-    ).catch(e => {
-       console.log(e)
-    });
+   
   }
   onChange(e) {
     console.log(e)
@@ -55,41 +52,34 @@ class Quiz extends Component {
     this.setState({ currentQuestion: tempCurrent })
     this.setState({ sequence: tempSequence })
     this.setState({ value: 0 })
+    
+    this.props.addTOSequence(tempSequence);
     }
   }
   displayQuestions(){
     if(this.state.currentQuestion<10){
 return(<div>
-<ToggleButtonGroup name="quiz" type="radio" value={this.state.value} onChange={this.onChange}>
+  
+  <ToggleButtonGroup name="quiz" type="radio" value={this.state.value} onChange={this.onChange}>
     
-<ToggleButton value={1} >{this.state.answers[this.state.currentQuestion][0]}</ToggleButton>
-<br />
-<ToggleButton value={2}>{this.state.answers[this.state.currentQuestion][1]}</ToggleButton>      
-<br />
-<ToggleButton value={3}>{this.state.answers[this.state.currentQuestion][2]}</ToggleButton>
-<br />
-<ToggleButton value={4}>{this.state.answers[this.state.currentQuestion][3]}</ToggleButton>
-</ToggleButtonGroup>
-<Button variant="secondary"onClick={this.handleClick}>Next </Button>
+    <ToggleButton value={1} variant="outline-danger" >{this.state.answers[this.state.currentQuestion][0]}</ToggleButton>
+    <ToggleButton value={2}variant="outline-danger">{this.state.answers[this.state.currentQuestion][1]}</ToggleButton>    
+<br/>  
+    <ToggleButton value={3}variant="outline-danger">{this.state.answers[this.state.currentQuestion][2]}</ToggleButton>
+    <ToggleButton value={4}variant="outline-danger">{this.state.answers[this.state.currentQuestion][3]}</ToggleButton>
+    </ToggleButtonGroup>
+    <br/>
+<Button variant="secondary" onClick={this.handleClick}>Next </Button>
 </div>
 );
     }else{
       const tempCurrent= this.state.currentQuestion+1;
       this.setState({ currentQuestion: tempCurrent })
-      const workingUrl=`http://localhost:3333/routes/api/quizzes`
-      const id ='5dd4552460124e107a6057f5';
-      axios.post(workingUrl+`/${id}`,{sequence:this.state.sequence}).then(res =>{
-      this.setState({users: res.data.data.users})
-      console.log(res.data.msg)
-      
-      //console.log(matching)  
-      //console.log(temp)  
+      console.log("here")
+      this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
+return(<div>Done with Quiz</div>)
+     // this.props.setAnswer(tempSequence,this.props.auth.id);
 
-     
-      }
-      ).catch(e => {
-         console.log(e)
-      });
 
     }
   }
@@ -110,12 +100,12 @@ return(<div>
 
   } 
   render(){
-    
+    if(this.props.auth.isAuthenticated)
     return (
   <div className="Quiz">
     
     <Card className="text-center">
-    <Card.Header>{this.state.questions[this.state.currentQuestion]}</Card.Header>
+    <Card.Header><h1>{this.state.questions[this.state.currentQuestion]}</h1></Card.Header>
     <Card.Body>
       {this.display()}
     </Card.Body>
@@ -124,7 +114,16 @@ return(<div>
 
       </div>
     );
+    else
+    return<div>Not Authenticated</div>
   }
 }
 
-export default Quiz;
+const mapStateToProps =(state)=>({
+  auth:state.auth,
+  errors:state.errors,
+  quiz:state.quiz
+})
+
+export default connect(mapStateToProps,{addTOSequence,setAnswer})(Quiz);
+

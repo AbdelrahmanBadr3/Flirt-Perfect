@@ -21,7 +21,7 @@ const UserSchema = new Schema({
         default:"NOTSPECIFED",
         enum:["MALE","FEMALE","NOTSPECIFED"]
     },
-    dateOFBrith:{
+    dateOFBirth:{
         type:Date,
         required:true
     },

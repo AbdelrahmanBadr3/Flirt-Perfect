@@ -4,12 +4,13 @@ import {GET_ERRORS, SET_CURRENT_USER} from './types'
 import jwt_decode from 'jwt-decode/lib';
   //register user 
 const URL ='http://localhost:3333'
-const SITE ='http://localhost:3000'
+//const SITE ='http://localhost:3000'
    export const registerUser = (userData)=> dispatch =>{
       axios
-        .post(`${URL}/routes/api/users`,userData)
+        .post(`${URL}/routes/api/users/register`,userData)
         .then(res=>{
             alert('Done')
+            console.log(res.data)
           //     window.location.href=`${SITE}/verificationpage`
         })
         .catch(err=>{
@@ -31,9 +32,15 @@ export const verifyUser = (userData)=> dispatch =>{
 
 //LOG IN GET THE TOKEN  
 export const loginUser = userData => dispatch =>{
-    axios.post(`${URL}/routes/api/users/login`,userData)
+    console.log(userData)
+
+    axios.post(`http://localhost:3333/routes/api/users/login`,userData)
     .then(res => {
-     const {token ,data} = res.data ;   
+        console.log("user")
+
+     const {token ,data} = res.data ;  
+     console.log(res.data)
+ 
      localStorage.setItem('jwtToken',token);
      setAuthToken(token);
      const decoded =jwt_decode(token);
@@ -41,6 +48,7 @@ export const loginUser = userData => dispatch =>{
      dispatch(setCurrentUser(data));     
     })
     .catch(err=>{
+        console.log(err)
         alert(err)
         dispatch({
             type:GET_ERRORS,

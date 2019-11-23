@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { setQuestions } from '../../globalStore/actions/quizActions'
 import { loginUser ,registerUser} from '../../globalStore/actions/authActions'
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal.js";
-import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import {ButtonToolbar,Button} from 'react-bootstrap'
@@ -32,8 +31,8 @@ class Login extends Component {
       email:'',
       password:'',
       password2:'',
-      gender:'NOTSPECIFIED',
-      dateOFBrith: new Date(),
+      gender:'NOTSPECIFED',
+      dateOFBirth: new Date(),
       isShow:false,
       isShow1:false
     }
@@ -70,7 +69,7 @@ onSubmitSignUp = (e)=>{
     email:this.state.email,
     password:this.state.password,
     gender:this.state.gender,
-    dateOFBrith:this.state.dateOFBrith
+    dateOFBirth:this.state.dateOFBirth
 
   }
   this.props.registerUser(newUser);
@@ -98,9 +97,9 @@ handleChangeSelect = (newValue, actionMeta) => {
         if( nexProps.auth.user.tags.length===0) window.location.href="http://localhost:3000/startAs"
         else{
           if( nexProps.auth.user.tags.length>0) window.location.href="http://localhost:3000/HomePage"
+           }
     }
-    }
-     else  window.location.href="http://localhost:3000/verificationpage"
+     else  window.location.href="http://localhost:3000/quiz"
     }
     if(nexProps.errors){
       this.setState({errors:nexProps.errors})
@@ -146,7 +145,7 @@ handleChangeSelect = (newValue, actionMeta) => {
        password={this.state.password}
        password2={this.state.password2}
        email={this.state.email}
-       dateOFBrith={this.state.dateOFBrith}
+       dateOFBirth={this.state.dateOFBirth}
        handleChange={this.handleChange}
        gender={this.gender}
        genderOptions={genderOptions}
@@ -155,11 +154,7 @@ handleChangeSelect = (newValue, actionMeta) => {
   </ButtonToolbar> 
 
       </div>
-      <DatePicker
-                                    selected={this.state.dateOFBrith}
-                                    onChange={this.handleChange}
-                                    dateFormat="d MMMM  yyyy"
-                                />
+    
               
       </div>
     );

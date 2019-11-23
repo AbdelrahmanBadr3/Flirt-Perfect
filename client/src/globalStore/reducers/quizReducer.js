@@ -1,7 +1,9 @@
-import {SET_QUESTIONS} from '../actions/types'
+import {SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE} from '../actions/types'
 
 const initialState ={
     questions: [],
+    sequence:[],
+    tempSequence:[]
 };
 
 export default function (state = initialState, action ){
@@ -10,6 +12,16 @@ export default function (state = initialState, action ){
             return {
             ...state,
             questions:action.payload
+        }
+        case SET_ANSWER:
+            return {
+            ...state,
+            sequence:action.payload
+        }
+        case ADD_TO_SEQUENCE:
+            return {
+            ...state,
+            tempSequence:action.payload
         }
         default:
         return state;

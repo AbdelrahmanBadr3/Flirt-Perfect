@@ -39,7 +39,7 @@ function MyVerticallyCenteredModal(props) {
               </div>
               <div className="form-group">
              <DatePicker
-                                    selected={props.dateOFBrith}
+                                    selected={props.dateOFBirth}
                                     onChange={props.handleChange}
                                     dateFormat="d MMMM  yyyy"
                                 />

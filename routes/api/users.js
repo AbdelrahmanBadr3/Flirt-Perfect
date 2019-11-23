@@ -20,8 +20,9 @@ router.get('/',async (req, res) => {
 
 
 //Get certain user by ID
-router.get('/SpecificUser', passport.authenticate('jwt', { session: false }), async (req, res) =>{
+router.get('/SpeificUser', passport.authenticate('jwt', { session: false }), async (req, res) =>{
     try{
+    console.log(req)
     const userID=req.user.id
     const user = await User.findById(userID)
     if(!user) return res.status(404).send({error: 'User does not exist'})
@@ -52,7 +53,8 @@ router.post('/', async(req, res) => {
 		//id: uuid.v4(),
     };
     const dbUser= await User.create(newUser);
-    return res.json({ msg:"User was created successfully" ,data: dbUser });}
+    return res.json({ msg:"User was created successfully" ,data: dbUser });
+}
     catch(error)
     {
         console.log(error)
@@ -96,7 +98,6 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
 
  //Register
  router.post('/register', async (req,res) => {
-    console.log(req.body)
     const isValidated = userValidator.createValidation(req.body);
     if (isValidated.error) {
         console.log(isValidated.error.details[0].message);
@@ -106,7 +107,7 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
       name:req.body.name,
       email:req.body.email,
       password:req.body.password,
-      dateOfBirth:req.body.dateOfBirth,
+      dateOFBirth:req.body.dateOFBirth,
       gender:req.body.gender
       
     }
@@ -123,20 +124,21 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
             email:body.email,
             password: hashedPassword ,
             gender:body.gender,
-            dateOFBrith:body.dateOfBirth
+            dateOFBirth:body.dateOFBirth
         })
-    newUser
-    .save()
-    .then(user => res.json({data: user}))
-    .catch(err => res.json({error: 'Can not create user'},console.log(err)))
+        const dbUser= await User.create(newUser);
+        return res.json({ msg:"User was created successfully" ,data: dbUser });
+ 
   })
 
  //Login
  router.post('/login', async (req, res) => {
 	try {
     const { email, password } = req.body;
-    console.log(req.body)
-		const user = await User.findOne({ email });
+   // console.log(req.body)
+        const user = await User.findOne({ email });
+       // console.log("Hello")
+
 		if (!user) return res.status(400).json({ msg: 'Email does not exist' });
 		const match = bcrypt.compareSync(password, user.password);
 		if (match) {
@@ -145,12 +147,16 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
                 name: user.name,
                 email: user.email
             }
+           // console.log(user)
             const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
-            res.json({data: `Bearer ${token}`})
-            return res.json({ data: 'Token' })
+           // console.log(token)
+
+            return  res.json({token: `Bearer ${token}` ,data:payload})
         }
 		else return res.status(400).send({ password: 'Wrong password',msg:"wrong password" });
-	} catch (e) {}
+	} catch (e) {
+        console.error   (e)
+    }
 });
 
 
