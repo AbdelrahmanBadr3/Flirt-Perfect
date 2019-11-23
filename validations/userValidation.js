@@ -9,7 +9,7 @@ module.exports = {
             password: Joi.string().required().min(8).max(16),
             email: Joi.string().required().email().min(3).max(254),
 			gender:Joi.string().required().valid('MALE', 'FEMALE','NOTSPECIFED'),
-			dateOfBirth: Joi.date().required(),
+			dateOFBirth: Joi.date().required(),
             isActivated:Joi.boolean(),
             isOnline:Joi.boolean(),
 			answerID:Joi.objectId()
@@ -26,10 +26,10 @@ module.exports = {
             password: Joi.string().min(8).max(16),
             email: Joi.string().email().min(3).max(254),
 			gender:Joi.string().valid('MALE', 'FEMALE','NOTSPECIFED'),
-			dateOfBirth: Joi.date(),
-            isActivated:joi.boolean(),
-            isOnline:joi.boolean(),
-			answerID:joi.objectId()
+			dateOFBirth: Joi.date(),
+            isActivated:Joi.boolean(),
+            isOnline:Joi.boolean(),
+			answerID:Jsoi.objectId()
 		};
 
 		return Joi.validate(request, updateSchema);

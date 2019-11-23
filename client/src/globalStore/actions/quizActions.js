@@ -1,13 +1,41 @@
 import axios from 'axios';
-import {GET_ERRORS,SET_QUESTIONS} from './types'
+import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE} from './types'
 const URL='http://localhost:3333'
 
 export const setQuestions = () => dispatch =>{
-    axios.get(`${URL}/api/questions`)
+    console.log("questions")
+
+    axios.get(`${URL}/routes/api/questions`)
     .then(res => {
      const questions = res.data.data ;   
+     console.log(questions)
      localStorage.setItem('questions',questions);
      dispatch(storeQuestions(questions));  
+    })
+    .catch(err=>
+        dispatch({
+            type:GET_ERRORS,
+            payload:err
+    })
+    );
+};
+
+
+export const addTOSequence = sequence => dispatch =>{
+     dispatch(addSequence(sequence));  
+};
+export const setAnswer = (sequence,id) => dispatch =>{
+    console.log("here1")
+    console.log(sequence)
+    console.log(id)
+    
+    
+    axios.post(`${URL}/routes/api/quizzes/user`,{sequence})
+    .then(res => {
+     const users = res.data.data ;   
+     console.log(res.data)
+     localStorage.setItem('Matching Users',users);
+     //dispatch(storeQuestions(questions));  
     })
     .catch(err=>
         dispatch({
@@ -20,5 +48,18 @@ export const storeQuestions = ( questions )=>{
     return {
         type:SET_QUESTIONS,
         payload:questions
+    }
+}
+
+export const storeAnswer  = ( sequence )=>{
+    return {
+        type:SET_ANSWER,
+        payload:sequence
+    }
+}
+export const addSequence  = ( sequence )=>{
+    return {
+        type:ADD_TO_SEQUENCE,
+        payload:sequence
     }
 }

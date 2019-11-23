@@ -17,6 +17,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "react-select": "^2.4.3",
+    "react-transition-group": "^4.3.0",
     "redux-thunk": "^2.3.0",
     "store": "^2.0.12",
     "styled-components": "^4.2.0"

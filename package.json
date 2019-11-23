@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/GoogleCloudPlatform/getting-started-nodejs.git"
@@ -12,27 +11,21 @@
 		"@material-ui/core": "^3.9.3",
 		"@material-ui/icons": "^3.0.2",
 		"axios": "^0.18.0",
-		"babel-jest": "^23.6.0",
-
 		"bcrypt": "^3.0.5",
 		"bcryptjs": "^2.4.3",
 		"bootstrap": "^4.3.1",
 		"concurrently": "^4.1.0",
+		"babel-jest": "23.6.0",
 		"cors": "^2.8.5",
 		"crypto": "^1.0.1",
 		"crypto-js": "^3.1.9-1",
 		"express": "^4.16.4",
 		"i": "^0.3.6",
-
-		"jest": "^23.6.0",
-
 		"jest-cli": "^24.5.0",
 		"joi": "^14.3.1",
 		"joi-objectid": "^2.0.0",
 		"jsonwebtoken": "^8.5.1",
-
 		"jwt-decode": "^2.2.0",
-
 		"lodash": "^4.17.11",
 		"material-ui": "^0.20.2",
 		"moment": "^2.24.0",
@@ -40,6 +33,7 @@
 		"mongoose-type-url": "^1.0.5",
 		"nodemailer": "^6.1.1",
 		"passport": "^0.4.0",
+		"passport-google-oauth2": "^0.2.0",
 		"passport-jwt": "^4.0.0",
 		"passport-local": "^1.0.0",
 		"randombytes": "^2.1.0",

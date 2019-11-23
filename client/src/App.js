@@ -2,6 +2,7 @@ import React ,{Component}from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import Quiz from './components/pages/Quiz'
 import Login from './components/pages/LoginTest'
+
 import { connect } from 'react-redux'
 
 //import { connect } from 'react-redux'
