@@ -19,9 +19,12 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
     const user= await User.findById(userID)
     const userSchema={
         name:user.name,
-        _id:user._id
+        id:user._id,
+        gender:user.gender
     }
-    
+    const currQuiz = await Quiz.findOne({users: {$elemMatch: {id:user._id, name:user.name}}})
+    console.log(currQuiz)
+    if(!currQuiz){
     const quiz = await Quiz.findOne({sequence})
     if(!quiz) {
         const usersArray=[userSchema]
@@ -30,18 +33,21 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
           users:usersArray  
         }
         await Quiz.create(quizSchema)
-    }else{
-
-        console.log("hello Here")
-        
+    }else{        
         quiz.users.unshift(userSchema)
         console.log(quiz.users)
         await Quiz.findOneAndUpdate({sequence},{users:quiz.users})
     }
 
     const quizAfterAnswer = await Quiz.findOne({sequence})
-
-    return res.json({ msg:"Quiz was created successfully" ,data: quizAfterAnswer });}
+    console.log(quizAfterAnswer)
+    let users=quizAfterAnswer.users.filter(tempuser=>user.gender!==tempuser.gender)
+    return res.json({ msg:"Quiz was created successfully" ,data: users});
+}else{
+    let users=currQuiz.users.filter(tempuser=>user.gender!==tempuser.gender)
+    res.json({ msg:"Quiz was taken before" ,data: users});
+}
+}
     catch(error)
     {
         console.log(error)

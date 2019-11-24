@@ -1,7 +1,8 @@
 import React ,{Component}from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import Quiz from './components/pages/Quiz'
-import Login from './components/pages/LoginTest'
+import Login from './components/pages/Login'
+import MatchingList from './components/pages/MatchingList.js'
 
 import { connect } from 'react-redux'
 
@@ -18,7 +19,8 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-             {  <Route exact path="/quiz" component={Quiz} />}
+               <Route exact path="/matchingList" component={MatchingList} />
+              <Route exact path="/quiz" component={Quiz} />
                <Route exact path="/" component={Login} />
         </Router>
 

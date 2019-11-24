@@ -51,6 +51,7 @@ function MyVerticallyCenteredModal(props) {
           defaultValue={props.genderOptions[0]}
           name="color"
           options={props.genderOptions}
+          onChange={props.handleChangeSelect}
         />
         </div>
          <input type="submit" className="btn btn-lg btn-danger" style={{  marginLeft: '87%' }}  value ="SIGNUP" marginright="10px" />

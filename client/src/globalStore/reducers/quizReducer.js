@@ -1,9 +1,10 @@
-import {SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE} from '../actions/types'
+import {SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from '../actions/types'
 
 const initialState ={
     questions: [],
     sequence:[],
-    tempSequence:[]
+    tempSequence:[],
+    matchingUsers:[]
 };
 
 export default function (state = initialState, action ){
@@ -23,6 +24,12 @@ export default function (state = initialState, action ){
             ...state,
             tempSequence:action.payload
         }
+        case Add_Matching_List:
+                return {
+                ...state,
+                matchingUsers:action.payload
+            }
+        
         default:
         return state;
     }
