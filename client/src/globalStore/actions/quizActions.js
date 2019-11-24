@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE} from './types'
+import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from './types'
 const URL='http://localhost:3333'
 
 export const setQuestions = () => dispatch =>{
@@ -34,7 +34,8 @@ export const setAnswer = (sequence,id) => dispatch =>{
     .then(res => {
      const users = res.data.data ;   
      console.log(res.data)
-     localStorage.setItem('Matching Users',users);
+     //ocalStorage.setItem('Matching Users',users);
+     dispatch(addMatchingList(users)); 
      //dispatch(storeQuestions(questions));  
     })
     .catch(err=>
@@ -61,5 +62,11 @@ export const addSequence  = ( sequence )=>{
     return {
         type:ADD_TO_SEQUENCE,
         payload:sequence
+    }
+}
+export const addMatchingList  = ( matchingList  )=>{
+    return {
+        type:Add_Matching_List,
+        payload:matchingList
     }
 }
