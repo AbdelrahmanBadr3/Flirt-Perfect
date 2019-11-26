@@ -1,15 +1,17 @@
 import React ,{Component}from 'react';
 import { connect } from 'react-redux'
-import {addTOSequence,setAnswer } from '../../globalStore/actions/quizActions'
+import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import Carousel from 'react-bootstrap/Carousel'
-//Button,ToggleButtonGroup,ToggleButton
+import FontAwesome from 'react-fontawesome'
+import FontAwesomeIcon from 'react-fontawesome'
+import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { Link } from 'react-router-dom';
+import {logoutUser} from '../../globalStore/actions/authActions'
 
 import {Card,Image} from 'react-bootstrap'
 import girl from '../../assessments/girl.jpg';
 import boy from '../../assessments/boy.jpg';
 import non from '../../assessments/non.jpg';
-//import Moment from 'react-moment';
 
 //import { connect } from 'react-redux'
 import './MatchingList.css';
@@ -26,15 +28,17 @@ class MatchingList extends Component {
     this.handleSelect = this.handleSelect.bind(this)
     }
   componentDidMount(){
+    this.props.getMatchingList();
   }
+
   onClick(key) {
-    
+
   }
   getThelist(){
     let MatchedList=[];
     console.log(this.props.quiz.matchingUsers)
     for(var user of this.props.quiz.matchingUsers){
-        let image =user.gender==="MALE"?<Image src={boy} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} /> :
+        let image =user.gender==="MALE"?<Image src={boy} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} /> :
         (user.gender==="FEMALE"? <Image src={girl} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} />:
         <Image src={non} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} />)
     MatchedList.push( <Carousel.Item style={{ backgroundColor:'#c47ba5'}}>
@@ -47,31 +51,23 @@ class MatchingList extends Component {
 </Card.Body>
 </Card>
   </Carousel.Item>)
+  
    }
    if(MatchedList.length>0) return(MatchedList)
-   else return(
-    <Carousel.Item style={{ backgroundColor:'#c47ba5'}}>
-   <Carousel.Caption>
-      <h1>Sorry :(</h1>
-      <p>For that no one is matching with you till now </p>
-    </Carousel.Caption>
+   else {
+     return(
+    <div style={{ backgroundColor:'#c47ba5'}}>
 
-  </Carousel.Item>
-   )
-/*
-    <Carousel.Item style={{ backgroundColor:'black'}}>
-    <Card style={{ width:'50%',height:'100%' ,marginLeft:'25%'}}>
-    <Image src={boy} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} />
-        <Card.Body>
-  <Card.Title>User Name</Card.Title>
-  <Card.Text>
-    Some quick example text to build on the card title and make up the bulk of
-    the card's content.
+   <Card style={{ width:'50%',height:'100%' ,marginLeft:'25%'}}>
+<Card.Body>
+  <Card.Title>Sorry :( </Card.Title>
+  <Card.Text style={{ marginBottom:'25%'}}>
+  For that no one is matching with you till now
   </Card.Text>
-  <Button variant="primary">Go somewhere</Button>
-    </Card.Body>
-    </Card>
-  </Carousel.Item>*/
+</Card.Body>
+</Card>
+ </div>)
+    }
 
   }
 
@@ -88,18 +84,27 @@ class MatchingList extends Component {
     
   {this.getThelist()}
     </Carousel>
-      </div>
-      </div>
+    <div>
+   <button type="button" class="btn btn-outline-secondary" 
+   style={{position:'absolute',top:'-10%',right:'-30%',left:'135%'}}
+   onClick={() => this.props.logoutUser()}
+   >
+   <a href='/'><FontAwesomeIcon icon={faCoffee} /></a>
+   </button>
+   </div>
+    </div>
+    </div>
 )
   }
 }
 const mapStateToProps =(state)=>({
   auth:state.auth,
   errors:state.errors,
-  quiz:state.quiz,
+  quiz:state.quiz
+
 })
 
-export default connect(mapStateToProps,{addTOSequence,setAnswer})(MatchingList);
+export default connect(mapStateToProps,{logoutUser,addTOSequence,setAnswer,getMatchingList})(MatchingList);
 
 
 
