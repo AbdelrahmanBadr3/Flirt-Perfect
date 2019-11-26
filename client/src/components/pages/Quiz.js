@@ -1,6 +1,6 @@
 import React ,{Component}from 'react';
 import { connect } from 'react-redux'
-import {addTOSequence,setAnswer } from '../../globalStore/actions/quizActions'
+import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import QuizTamplate from './QuizTemplate'
 
 import {Card} from 'react-bootstrap'
@@ -48,8 +48,8 @@ class Quiz extends Component {
     
     this.props.addTOSequence(tempSequence);
     }else{
-      if(this.state.currentQuestion<10)
-      this.setState({ currentQuestion: 10 })
+      if(this.state.value!==0)
+        this.setState({ currentQuestion: 10 })
     }
   }
   displayQuestions(){
@@ -70,8 +70,9 @@ return(
       const tempCurrent= this.state.currentQuestion+1;
       this.setState({ currentQuestion: tempCurrent })
       console.log("here")
-      this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
       window.location.href="http://localhost:3000/matchingList"
+      this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
+     
 
 
     }
@@ -119,5 +120,5 @@ const mapStateToProps =(state)=>({
   quiz:state.quiz
 })
 
-export default connect(mapStateToProps,{addTOSequence,setAnswer})(Quiz);
+export default connect(mapStateToProps,{addTOSequence,setAnswer,getMatchingList})(Quiz);
 

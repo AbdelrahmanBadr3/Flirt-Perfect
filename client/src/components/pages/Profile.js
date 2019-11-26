@@ -18,7 +18,7 @@ class Profile extends Component {
       sequence:[],
       currentQuestion:0,
       users:[],
-      currentUserID:'5dd4552460124e107a6057f5'
+      currentUserID:'5ddabbba034ab335ac918850'
     }
     this.onChange = this.onChange.bind(this)
     this.handleClick = this.handleClick.bind(this);

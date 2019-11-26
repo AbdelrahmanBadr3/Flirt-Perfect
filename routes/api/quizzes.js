@@ -40,11 +40,16 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
     }
 
     const quizAfterAnswer = await Quiz.findOne({sequence})
-    console.log(quizAfterAnswer)
+    
     let users=quizAfterAnswer.users.filter(tempuser=>user.gender!==tempuser.gender)
+    console.log(users)
+    console.log(user)
     return res.json({ msg:"Quiz was created successfully" ,data: users});
 }else{
+
     let users=currQuiz.users.filter(tempuser=>user.gender!==tempuser.gender)
+    console.log(users)
+    console.log(user)
     res.json({ msg:"Quiz was taken before" ,data: users});
 }
 }
@@ -53,6 +58,34 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
         console.log(error)
     }
 });
+router.get('/user', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try{
+        const userID = req.user.id;
+        const user= await User.findById(userID)
 
+        const currQuiz = await Quiz.findOne({users: {$elemMatch: {id:user._id, name:user.name}}})
+        console.log(currQuiz)
+
+      
+        if(! ( currQuiz === null ||
+            currQuiz === undefined ||
+            (typeof currQuiz === 'object' && Object.keys(currQuiz).length === 0) ||
+            (typeof currQuiz === 'string' && currQuiz.trim().length === 0))){
+            console.log("currQuiz")
+
+        let users=currQuiz.users.filter(tempuser=>user.gender!==tempuser.gender)
+        console.log(users)
+        console.log(user)
+        return res.json({ msg:"MatchingList was fetched successfully" ,data: users});
+    }else{
+
+        res.json({ msg:"Sorry" ,data: []});
+    }
+    }
+        catch(error)
+        {
+            console.log(error)
+        }
+});
 
 module.exports = router;

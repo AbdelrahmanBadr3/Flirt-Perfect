@@ -45,6 +45,25 @@ export const setAnswer = (sequence,id) => dispatch =>{
     })
     );
 };
+export const getMatchingList = () => dispatch =>{
+    console.log("hereNadine")
+
+    axios.get(`${URL}/routes/api/quizzes/user`)
+    .then(res => {
+     const users = res.data.data ;   
+     console.log(res.data)
+     //ocalStorage.setItem('Matching Users',users);
+     dispatch(addMatchingList(users)); 
+     //dispatch(storeQuestions(questions));  
+    })
+    .catch(err=>
+        dispatch({
+            type:GET_ERRORS,
+            payload:err
+    })
+    );
+};
+
 export const storeQuestions = ( questions )=>{
     return {
         type:SET_QUESTIONS,

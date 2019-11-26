@@ -78,7 +78,7 @@ onSubmitSignUp = (e)=>{
 handleChange=(date) =>{
   console.log(date)
   this.setState({     
-    dateOFBrith: new Date(date)
+    dateOFBirth: new Date(date)
   });
 }
 handleChangeSelect = (newValue, actionMeta) => {
@@ -130,6 +130,7 @@ handleChangeSelect = (newValue, actionMeta) => {
         type={'false'}
 
       />
+      
        <Button variant="light" onClick={() => this.setModalShow1(true)} style={{ marginLeft: 10}}>
       Register
     </Button >
