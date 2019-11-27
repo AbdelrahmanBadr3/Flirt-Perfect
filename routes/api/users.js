@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
-
 var jwt_decode = require('jwt-decode');
 const userValidator = require('../../validations/userValidation');
 const bcrypt = require('bcryptjs');
@@ -9,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const tokenKey = require('../../config/keys_dev').secretOrKey;
 const passport = require('passport');
 require('../../config/passport')(passport);
+const axios=require('axios');
 
 // /const uuid = require('uuid');
 
@@ -34,6 +34,43 @@ router.get('/SpeificUser', passport.authenticate('jwt', { session: false }), asy
        console.log(error)
    }
 })
+
+//Check Email if found for Google Sign-in
+router.post('/googleSignIN', async (req,res) => {
+  try {
+        const { email, name } = req.body;
+        let user = await User.findOne({ email });
+        if (!user){ 
+          //  return res.status(400).json({ msg: 'Email does not exist' });
+            const password = "12345678"
+            const gender="NOTSPECIFED"
+            const dateOFBirth="6-6-1980"   
+            const salt = bcrypt.genSaltSync(10)
+            const hashedPassword = bcrypt.hashSync(password,salt)
+
+            const newUser = {
+                name,
+                password:hashedPassword,
+                email,
+                gender,
+                dateOFBirth
+            }
+             user= await User.create(newUser);
+        }
+            const payload = {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+            const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
+            return  res.json({token: `Bearer ${token}` ,data:payload})
+       
+	} catch (e) {
+        console.error(e)
+    }   
+})
+
+
 
 
 //Creating new User

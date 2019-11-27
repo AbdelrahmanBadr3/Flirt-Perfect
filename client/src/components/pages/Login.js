@@ -1,13 +1,13 @@
 import React ,{Component}from 'react';
 import { connect } from 'react-redux'
 import { setQuestions } from '../../globalStore/actions/quizActions'
-import { loginUser ,registerUser} from '../../globalStore/actions/authActions'
+import { loginUser ,registerUser,loginWithGoogle} from '../../globalStore/actions/authActions'
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal.js";
-
+import axios from 'axios';
 import {ButtonToolbar,Button} from 'react-bootstrap'
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-
+import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from '../../globalStore/actions/types'
 import "react-datepicker/dist/react-datepicker.css";
 import './Login.css';
 const fbConfig = require('../../config/firebase');
@@ -49,9 +49,28 @@ class Login extends Component {
   }
   uiConfig = {
     signInFlow: "popup",
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    signInOptions: [{
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      customParameters: {
+        // Forces account selection even when one account
+        // is available.
+        prompt: 'select_account'
+      }
+    }],
     callbacks: {
-      signInSuccess: () => false
+    
+      signInSuccess: () =>{
+        const userData = {
+          email:firebase.auth().currentUser.email,
+          name:firebase.auth().currentUser.displayName
+      }
+    
+     this.props.loginWithGoogle(userData)
+     this.props.setQuestions()
+
+        console.log('here badr')
+      }
+      
     }
   }
   setModalShow = (show)=>{
@@ -124,9 +143,25 @@ handleChangeSelect = (newValue, actionMeta) => {
   
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user })
-      console.log("user", user)
+
+    
+     this.setState({ isSignedIn: !!user })
+
     })
+    //var email=  firebase.auth().currentUser.email
+    //  console.log(firebase.auth().currentUser)
+      //console.log(user)
+   /*   axios.post(`http://localhost:3000/routes/api/users/Checkemail`,{email})
+    .then(res => {
+     user = res.data.data;   
+   //  console.log(res.data)
+    if(this.state.isSignedIn==true)
+    {
+      // window.location.href="http://localhost:3000/quiz"
+    }
+    
+
+    })*/
   }
  
  
@@ -138,8 +173,11 @@ handleChangeSelect = (newValue, actionMeta) => {
       <h1>Find Your </h1>
       <h1>Perfect Match</h1>
       <h4>Everyone wants to find a special person they truly connect with. Countless pieces of literature,</h4>
-      <h4> music and art have confronted this same goal,Romance can be a struggle, but also an inspiring muse.</h4>
-      <h4>  If you're willing to work for it and truly believe there is someone special for you, you can find love.</h4>
+      <h4> music and art have confronted this same goal,</h4>
+      <h4> Romance can be a struggle, but also an inspiring muse. If you're willing to work for it and </h4>
+      <h4> truly believe there is someone special for you, </h4>
+      <h4> You can find love.</h4>
+      <br/>
       <ButtonToolbar>
       <Button variant="danger" onClick={() => this.setModalShow(true)}>
       Login
@@ -180,18 +218,19 @@ handleChangeSelect = (newValue, actionMeta) => {
 <div className="Bg-Signin">  <StyledFirebaseAuth
             uiConfig={this.uiConfig}
             firebaseAuth={firebase.auth()}
+
           /></div>
-      </div>
-    
-              
+      </div>       
       </div>
     );
   }
 }
+
+
 const mapStateToProps =(state)=>({
   auth:state.auth,
   errors:state.errors,
   questions:state.questions
 })
 
-export default connect(mapStateToProps,{loginUser,setQuestions,registerUser})(Login);
+export default connect(mapStateToProps,{loginWithGoogle,loginUser,setQuestions,registerUser})(Login);

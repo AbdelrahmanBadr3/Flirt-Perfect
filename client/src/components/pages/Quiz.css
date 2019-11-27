@@ -15,7 +15,11 @@
     padding: 20px;
   }
 
-
+.Quiz-image{
+  
+  background-color:#DC4773;
+  min-height: 100vh;
+}
 
 .Quiz-header {
   background-color: #282c34;
