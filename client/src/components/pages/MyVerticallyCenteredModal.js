@@ -3,7 +3,9 @@ import { Modal } from "react-bootstrap";
 import classnames from 'classnames';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
+
 import "react-datepicker/dist/react-datepicker.css";
+
 function MyVerticallyCenteredModal(props) {
   let form
   if(props.type==='true')

@@ -2,9 +2,8 @@ import React ,{Component}from 'react';
 import { connect } from 'react-redux'
 import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import Carousel from 'react-bootstrap/Carousel'
-import FontAwesome from 'react-fontawesome'
 import FontAwesomeIcon from 'react-fontawesome'
-import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid'
+import {  faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { Link } from 'react-router-dom';
 import {logoutUser} from '../../globalStore/actions/authActions'
 

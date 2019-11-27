@@ -4,9 +4,17 @@ import { setQuestions } from '../../globalStore/actions/quizActions'
 import { loginUser ,registerUser} from '../../globalStore/actions/authActions'
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal.js";
 
-import "react-datepicker/dist/react-datepicker.css";
 import {ButtonToolbar,Button} from 'react-bootstrap'
+import firebase from "firebase"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+
+import "react-datepicker/dist/react-datepicker.css";
 import './Login.css';
+const fbConfig = require('../../config/firebase');
+
+
+firebase.initializeApp(fbConfig);
+
 const genderOptions=[
   {
     label: 'Not Specefied',
@@ -34,7 +42,16 @@ class Login extends Component {
       gender:'NOTSPECIFED',
       dateOFBirth: new Date(),
       isShow:false,
-      isShow1:false
+      isShow1:false,
+      isSignedIn: false
+    }
+
+  }
+  uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    callbacks: {
+      signInSuccess: () => false
     }
   }
   setModalShow = (show)=>{
@@ -75,6 +92,8 @@ onSubmitSignUp = (e)=>{
   this.props.registerUser(newUser);
 }
 }
+
+
 handleChange=(date) =>{
   console.log(date)
   this.setState({     
@@ -103,6 +122,12 @@ handleChangeSelect = (newValue, actionMeta) => {
     }
   }
   
+  componentDidMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user })
+      console.log("user", user)
+    })
+  }
  
  
   render(){
@@ -119,6 +144,7 @@ handleChangeSelect = (newValue, actionMeta) => {
       <Button variant="danger" onClick={() => this.setModalShow(true)}>
       Login
     </Button>
+  
     <MyVerticallyCenteredModal
         show={this.state.isShow}
         onHide={() => this.setModalShow(false)}
@@ -151,7 +177,10 @@ handleChangeSelect = (newValue, actionMeta) => {
        type={'true'}
       />
   </ButtonToolbar> 
-
+<div className="Bg-Signin">  <StyledFirebaseAuth
+            uiConfig={this.uiConfig}
+            firebaseAuth={firebase.auth()}
+          /></div>
       </div>
     
               
