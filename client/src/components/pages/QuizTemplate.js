@@ -14,7 +14,7 @@ class QuizTemplate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: ['outline-danger', 'outline-danger', 'outline-danger', 'outline-danger', 'outline-danger']
+      colors: ['outline-secondary', 'outline-secondary', 'outline-secondary', 'outline-secondary', 'outline-secondary']
     }
     this.onClick = this.onClick.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -25,13 +25,13 @@ class QuizTemplate extends Component {
   onClick(key) {
     let temp = this.state.colors
     for (let j = 1; j < 5; j++)
-      if (j === key) temp[j] = 'danger'
+      if (j === key) temp[j] = 'secondary'
       else temp[j] = temp[0]
     this.setState({ colors: temp })
     this.props.onChange(key)
   }
   handleClick() {
-    this.setState({ colors: ['outline-danger', 'outline-danger', 'outline-danger', 'outline-danger', 'outline-danger'] })
+    this.setState({ colors: ['outline-secondary', 'outline-secondary', 'outline-secondary', 'outline-secondary', 'outline-secondary'] })
     this.props.handleClick()
 
   }

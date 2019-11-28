@@ -12,6 +12,8 @@ import girl from '../../assessments/girl.jpg';
 import boy from '../../assessments/boy.jpg';
 import non from '../../assessments/non.jpg';
 
+import cry from '../../assessments/crying.png';
+
 //import { connect } from 'react-redux'
 import './MatchingList.css';
 
@@ -38,9 +40,9 @@ class MatchingList extends Component {
     console.log(this.props.quiz.matchingUsers)
     for(var user of this.props.quiz.matchingUsers){
         let image =user.gender==="MALE"?<Image src={boy} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} /> :
-        (user.gender==="FEMALE"? <Image src={girl} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} />:
-        <Image src={non} roundedCircle style={{width: 370,height: 370 ,marginLeft:'4%'}} />)
-    MatchedList.push( <Carousel.Item style={{ backgroundColor:'#c47ba5'}}>
+        (user.gender==="FEMALE"? <Image src={girl} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} />:
+        <Image src={non} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} />)
+    MatchedList.push( <Carousel.Item style={{ backgroundColor:'#DC4773'}}>
     <Card style={{ width:'50%',height:'100%' ,marginLeft:'25%'}}>
   {image}
 <Card.Body>
@@ -55,9 +57,10 @@ class MatchingList extends Component {
    if(MatchedList.length>0) return(MatchedList)
    else {
      return(
-    <div style={{ backgroundColor:'#c47ba5'}}>
+    <div style={{ backgroundColor:'#DC4773'}}>
 
    <Card style={{ width:'50%',height:'100%' ,marginLeft:'25%'}}>
+   <Image src={cry} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} />
 <Card.Body>
   <Card.Title>Sorry :( </Card.Title>
   <Card.Text style={{ marginBottom:'25%'}}>
@@ -77,7 +80,7 @@ class MatchingList extends Component {
   render(){
     return (
         <div  className="MatchList">
-        <div style={{width:'50%',height:'50%',position: 'absolute',left: '25%',top:'7%', backgroundColor:'#c47ba5' }} >
+        <div style={{width:'50%',height:'50%',position: 'absolute',left: '25%',top:'7%', backgroundColor:'#DC4773' }} >
 
    <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
     
@@ -88,7 +91,7 @@ class MatchingList extends Component {
    style={{position:'absolute',top:'-10%',right:'-30%',left:'135%'}}
    onClick={() => this.props.logoutUser()}
    >
-   <a href='/'><FontAwesomeIcon icon={faCoffee} /></a>
+   Logout
    </button>
    </div>
     </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import QuizTamplate from './QuizTemplate'
 
+
 import {Card} from 'react-bootstrap'
 
 //import { connect } from 'react-redux'
@@ -26,7 +27,7 @@ class Quiz extends Component {
   }
   componentDidMount(){
     var tempQuestions=[]
-    var tempAnswers=    []
+    var tempAnswers= []
     this.props.quiz.questions.forEach(element => {
       tempQuestions.push(element.question)
       tempAnswers.push(element.answers)
@@ -55,6 +56,7 @@ class Quiz extends Component {
   displayQuestions(){
     if(this.state.currentQuestion<10){
 return(
+  
   <div>
 
   <QuizTamplate 
@@ -73,7 +75,6 @@ return(
       window.location.href="http://localhost:3000/matchingList"
       this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
      
-
 
     }
   }
@@ -99,14 +100,12 @@ return(
   render(){
     if(this.props.auth.isAuthenticated)
     return (
+      <div className="Quiz-image">
   <div className="Quiz">
     
-   <Card>
       {this.display()}
   
-  
-    </Card>
-
+</div>
       </div>
     );
     else
