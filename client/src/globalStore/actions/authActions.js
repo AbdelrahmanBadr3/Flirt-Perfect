@@ -3,13 +3,10 @@ import setAuthToken from '../../utils/setAuthToken';
 import {GET_ERRORS, SET_CURRENT_USER} from './types'
 import jwt_decode from 'jwt-decode/lib';
 import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
   //register user 
-const URL ='http://localhost:3333'
-const fbConfig = require('../../config/firebase');
+const URL ='http://206.189.73.177:3333'
 
-
-//const SITE ='http://localhost:3000'
+//const SITE ='http://206.189.73.177:3000'
    export const registerUser = (userData)=> dispatch =>{
       axios
         .post(`${URL}/routes/api/users/register`,userData)
@@ -23,23 +20,11 @@ const fbConfig = require('../../config/firebase');
             dispatch({type:GET_ERRORS, payload:err.response.data})}
     );
 };
-export const verifyUser = (userData)=> dispatch =>{
-    axios.post(`${URL}/routes/api/users/verify`,{secretToken:userData})
-    .then(res => {
-        dispatch(setCurrentUser(res.data.user.user));
-         //window.location.href=`${SITE}/startAs`
-    
-        }).catch(e=>{
-          alert(e.response.data)
-
-        })
-};
-
 //LOG IN GET THE TOKEN  
 export const loginUser = userData => dispatch =>{
     console.log(userData)
 
-    axios.post(`http://localhost:3333/routes/api/users/login`,userData)
+    axios.post(`http://206.189.73.177:3333/routes/api/users/login`,userData)
     .then(res => {
         console.log("user")
 
@@ -68,7 +53,7 @@ export const loginUser = userData => dispatch =>{
 export const loginWithGoogle = userData => dispatch =>{
     console.log(userData)
 
-    axios.post(`http://localhost:3333/routes/api/users/googleSignIN`,userData)
+    axios.post(`http://206.189.73.177:3333/routes/api/users/googleSignIN`,userData)
     .then(res => {
         console.log("user")
 
@@ -110,5 +95,5 @@ export const logoutUser = ()=>
         setAuthToken(false)
         firebase.auth().signOut()
         dispatch(setCurrentUser({}))
-        window.location.href="http://localhost:3000"
+        window.location.href="http://206.189.73.177"
     }

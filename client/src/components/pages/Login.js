@@ -128,13 +128,7 @@ handleChangeSelect = (newValue, actionMeta) => {
 };
   componentWillReceiveProps(nexProps){
     if(nexProps.auth.isAuthenticated){
-      if(nexProps.auth.user.emailVerified){
-        if( nexProps.auth.user.tags.length===0) window.location.href="http://localhost:3000/startAs"
-        else{
-          if( nexProps.auth.user.tags.length>0) window.location.href="http://localhost:3000/HomePage"
-           }
-    }
-     else  window.location.href="http://localhost:3000/quiz"
+      window.location.href="http://206.189.73.177/quiz"
     }
     if(nexProps.errors){
       this.setState({errors:nexProps.errors})
@@ -148,20 +142,6 @@ handleChangeSelect = (newValue, actionMeta) => {
      this.setState({ isSignedIn: !!user })
 
     })
-    //var email=  firebase.auth().currentUser.email
-    //  console.log(firebase.auth().currentUser)
-      //console.log(user)
-   /*   axios.post(`http://localhost:3000/routes/api/users/Checkemail`,{email})
-    .then(res => {
-     user = res.data.data;   
-   //  console.log(res.data)
-    if(this.state.isSignedIn==true)
-    {
-      // window.location.href="http://localhost:3000/quiz"
-    }
-    
-
-    })*/
   }
  
  
