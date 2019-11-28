@@ -1,10 +1,10 @@
-FROM node:10
-
-RUN mkdir -p /usr/src/app
+FROM node:10-alpine
 
 WORKDIR /usr/src/app
 
-EXPOSE 3333
+COPY package.json ./usr/src/app
+RUN npm install
 
-# You can change this
+COPY . ./usr/src/app
+EXPOSE 3333
 CMD [ "npm", "start" ]

@@ -3,11 +3,9 @@ import { connect } from 'react-redux'
 import { setQuestions } from '../../globalStore/actions/quizActions'
 import { loginUser ,registerUser,loginWithGoogle} from '../../globalStore/actions/authActions'
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal.js";
-import axios from 'axios';
 import {ButtonToolbar,Button} from 'react-bootstrap'
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from '../../globalStore/actions/types'
 import "react-datepicker/dist/react-datepicker.css";
 import './Login.css';
 const fbConfig = require('../../config/firebase');
