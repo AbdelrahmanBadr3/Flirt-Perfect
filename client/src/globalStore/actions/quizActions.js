@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from './types'
-const URL='http://localhost:3333'
+const URL='http://206.189.73.177:3333'
 
 export const setQuestions = () => dispatch =>{
     console.log("questions")

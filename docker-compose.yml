@@ -1,0 +1,29 @@
+version: "3"
+services:
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports:
+            - 27017:27017
+    frontend:
+        container_name: app_fornt_end
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        image: nan/flirt_perfect_client
+        ports:
+            - "80:3000"
+        volumes:
+            - ./client:/usr/src/app
+    backend:
+        container_name: app_back_end
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        image: nan/flirt_perfect_server
+        ports:
+            - "3333:3333"
+        volumes:
+            - ./server:/usr/src/app
+        depends_on:
+            - mongo

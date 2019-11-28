@@ -2,11 +2,6 @@ import React ,{Component}from 'react';
 import { connect } from 'react-redux'
 import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import QuizTamplate from './QuizTemplate'
-
-
-import {Card} from 'react-bootstrap'
-
-//import { connect } from 'react-redux'
 import './Quiz.css';
 
 class Quiz extends Component {
@@ -20,7 +15,6 @@ class Quiz extends Component {
       sequence:[],
       currentQuestion:0,
       users:[],
-      //currentUserID:'5dd4552460124e107a6057f5'
     }
     this.onChange = this.onChange.bind(this)
     this.handleClick = this.handleClick.bind(this);
@@ -72,7 +66,7 @@ return(
       const tempCurrent= this.state.currentQuestion+1;
       this.setState({ currentQuestion: tempCurrent })
       console.log("here")
-      window.location.href="http://localhost:3000/matchingList"
+      window.location.href="http://206.189.73.177/matchingList"
       this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
      
 
