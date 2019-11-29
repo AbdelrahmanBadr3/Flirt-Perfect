@@ -1,10 +1,9 @@
 FROM node:10-alpine
 
-WORKDIR /usr/src/app
 
-COPY package.json ./usr/src/app
-RUN npm install
+COPY  . ./app
+WORKDIR /app
+RUN apk --no-cache add --virtual builds-deps build-base python && npm --build-from-source install bcrypt && npm install
 
-COPY . ./usr/src/app
 EXPOSE 3333
 CMD [ "npm", "start" ]

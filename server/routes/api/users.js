@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
-var jwt_decode = require('jwt-decode');
 const userValidator = require('../../validations/userValidation');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const tokenKey = require('../../config/keys_dev').secretOrKey;
 const passport = require('passport');
 require('../../config/passport')(passport);
-const axios=require('axios');
 
 // /const uuid = require('uuid');
 
