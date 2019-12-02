@@ -1,9 +1,10 @@
 import isEmpty from '../../validation/is-empty';
-import {SET_CURRENT_USER} from '../actions/types'
+import {SET_CURRENT_USER,IS_SIGNEDUP} from '../actions/types'
 
 const initialState ={
     isAuthenticated :false,
     user:{},
+    isSignedUP:false
    
 };
 
@@ -14,6 +15,11 @@ export default function (state = initialState, action ){
             ...state,
             isAuthenticated:!isEmpty(action.payload),
             user:action.payload
+        }
+        case IS_SIGNEDUP:
+            return {
+            ...state,
+            isSignedUP:action.payload
         }
         default:
         return state;

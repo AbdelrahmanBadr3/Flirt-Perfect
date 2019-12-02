@@ -8,8 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function MyVerticallyCenteredModal(props) {
   let form
-  if(props.type==='true')
-  {
+  if(props.type==='true') {
     form= <form noValidate  onSubmit={props.onSubmitSignUp} >
 
     <div className="form-group">
@@ -37,7 +36,6 @@ function MyVerticallyCenteredModal(props) {
                  <input type="password" className={classnames('form-control form-control-lg')} placeholder="Confirm Password" name="password2" value={props.password2}
                  onChange={props.onChange}
                 />
-                 {/* {errors.password2 &&(<div className="invalid-feedback">{errors.password2}</div>)} */}
               </div>
               <div className="form-group">
              <DatePicker
@@ -87,7 +85,7 @@ function MyVerticallyCenteredModal(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-      
+        show={props.show}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -97,9 +95,7 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
        {form}
         </Modal.Body>
-        <Modal.Footer>
-          here will put this links to our page in facebook or may be an icons or 7abet hearts
-        </Modal.Footer>
+    
       </Modal>
     );
   }

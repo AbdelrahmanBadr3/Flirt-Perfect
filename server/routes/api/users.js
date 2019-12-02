@@ -133,6 +133,7 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
 
  //Register
  router.post('/register', async (req,res) => {
+     console.log("here")
     const isValidated = userValidator.createValidation(req.body);
     if (isValidated.error) {
         console.log(isValidated.error.details[0].message);

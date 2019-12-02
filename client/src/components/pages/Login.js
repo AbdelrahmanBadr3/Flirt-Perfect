@@ -9,6 +9,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import "react-datepicker/dist/react-datepicker.css";
 import './Login.css';
 const fbConfig = require('../../config/firebase');
+const frontEndIP= require('../../config/URLS').frontEndIP;
 
 
 firebase.initializeApp(fbConfig);
@@ -65,8 +66,6 @@ class Login extends Component {
     
      this.props.loginWithGoogle(userData)
      this.props.setQuestions()
-
-        console.log('here badr')
       }
       
     }
@@ -106,31 +105,33 @@ onSubmitSignUp = (e)=>{
     dateOFBirth:this.state.dateOFBirth
 
   }
-  this.props.registerUser(newUser);
+ let test= this.props.registerUser(newUser);
+ console.log(test)
 }
 }
 
 
 handleChange=(date) =>{
-  console.log(date)
+  //console.log(date)
   this.setState({     
     dateOFBirth: new Date(date)
   });
 }
 handleChangeSelect = (newValue, actionMeta) => {
-  console.group('Value Changed');
-  console.log(newValue);
-  console.log(`action: ${actionMeta.action}`);
   this.setState({gender:newValue.value})
-  console.groupEnd();
 };
   componentWillReceiveProps(nexProps){
     if(nexProps.auth.isAuthenticated){
-      window.location.href="http://206.189.73.177/quiz"
+      window.location.href=`${frontEndIP}/quiz`
+    }
+    if(nexProps.auth.isSignedIn){
+      this.setModalShow1(false)
     }
     if(nexProps.errors){
       this.setState({errors:nexProps.errors})
     }
+   
+  
   }
   
   componentDidMount = () => {
