@@ -35,7 +35,7 @@ class MatchingList extends Component {
   }
   getThelist(){
     let MatchedList=[];
-    console.log(this.props.quiz.matchingUsers)
+  //  console.log(this.props.quiz.matchingUsers)
     for(var user of this.props.quiz.matchingUsers){
         let image =user.gender==="MALE"?<Image src={boy} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} /> :
         (user.gender==="FEMALE"? <Image src={girl} roundedCircle style={{width: 360,height: 370 ,marginLeft:'4%'}} />:

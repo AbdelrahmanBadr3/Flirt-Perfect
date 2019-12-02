@@ -105,8 +105,8 @@ onSubmitSignUp = (e)=>{
     dateOFBirth:this.state.dateOFBirth
 
   }
- let test= this.props.registerUser(newUser);
- console.log(test)
+ this.props.registerUser(newUser);
+ //console.log(test)
 }
 }
 
@@ -121,10 +121,12 @@ handleChangeSelect = (newValue, actionMeta) => {
   this.setState({gender:newValue.value})
 };
   componentWillReceiveProps(nexProps){
+
     if(nexProps.auth.isAuthenticated){
       window.location.href=`${frontEndIP}/quiz`
     }
-    if(nexProps.auth.isSignedIn){
+    if(nexProps.auth.isSignedUP){
+
       this.setModalShow1(false)
     }
     if(nexProps.errors){

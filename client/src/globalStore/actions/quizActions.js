@@ -3,12 +3,12 @@ import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} f
 const backEndIP= require('../../config/URLS').backEndIP;
 
 export const setQuestions = () => dispatch =>{
-    console.log("questions")
+    ////console.log("questions")
 
     axios.get(`${backEndIP}/routes/api/questions`)
     .then(res => {
      const questions = res.data.data ;   
-     console.log(questions)
+     //console.log(questions)
      localStorage.setItem('questions',questions);
      dispatch(storeQuestions(questions));  
     })
@@ -25,15 +25,15 @@ export const addTOSequence = sequence => dispatch =>{
      dispatch(addSequence(sequence));  
 };
 export const setAnswer = (sequence,id) => dispatch =>{
-    console.log("here1")
-    console.log(sequence)
-    console.log(id)
+    //console.log("here1")
+    //console.log(sequence)
+    //console.log(id)
     
     
     axios.post(`${backEndIP}/routes/api/quizzes/user`,{sequence})
     .then(res => {
      const users = res.data.data ;   
-     console.log(res.data)
+     //console.log(res.data)
      dispatch(addMatchingList(users)); 
     })
     .catch(err=>
@@ -44,12 +44,12 @@ export const setAnswer = (sequence,id) => dispatch =>{
     );
 };
 export const getMatchingList = () => dispatch =>{
-    //console.log("hereNadine")
+    ////console.log("hereNadine")
 
     axios.get(`${backEndIP}/routes/api/quizzes/user`)
     .then(res => {
      const users = res.data.data ;   
-     console.log(res.data)
+     //console.log(res.data)
      dispatch(addMatchingList(users)); 
     })
     .catch(err=>

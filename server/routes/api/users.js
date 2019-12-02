@@ -20,7 +20,7 @@ router.get('/',async (req, res) => {
 //Get certain user by ID
 router.get('/SpeificUser', passport.authenticate('jwt', { session: false }), async (req, res) =>{
     try{
-    console.log(req)
+    //console.log(req)
     const userID=req.user.id
     const user = await User.findById(userID)
     if(!user) return res.status(404).send({error: 'User does not exist'})
@@ -63,8 +63,8 @@ router.post('/googleSignIN', async (req,res) => {
             const token = jwt.sign(payload, tokenKey, { expiresIn: '24h' })
             return  res.json({token: `Bearer ${token}` ,data:payload})
        
-	} catch (e) {
-        console.error(e)
+	} catch (error) {
+        console.error(error)
     }   
 })
 
@@ -133,10 +133,10 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
 
  //Register
  router.post('/register', async (req,res) => {
-     console.log("here")
+     //console.log("here")
     const isValidated = userValidator.createValidation(req.body);
     if (isValidated.error) {
-        console.log(isValidated.error.details[0].message);
+        //console.log(isValidated.error.details[0].message);
     return  res.status(400).send({msg: isValidated.error.details[0].message ,error:"validation error"}) ;
     }
     const body={
@@ -150,7 +150,7 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
    
     const user = await User.findOne({email:body.email})
     if(user) {
-      console.log("already exist")
+      //console.log("already exist")
       return res.status(400).json({error: 'Email already exists',msg:"Email already exists"})
     }
     const salt = bcrypt.genSaltSync(10)
@@ -190,8 +190,8 @@ router.put('/SpecificUser', passport.authenticate('jwt', { session: false }), as
             return  res.json({token: `Bearer ${token}` ,data:payload})
         }
 		else return res.status(400).send({ password: 'Wrong password',msg:"wrong password" });
-	} catch (e) {
-        console.error   (e)
+	} catch (error) {
+        console.error   (error)
     }
 });
 

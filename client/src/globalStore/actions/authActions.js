@@ -23,7 +23,7 @@ const frontEndIP= require('../../config/URLS').frontEndIP;
             return state;
         })
         .catch(err=>{   
-            console.log(err)
+            //console.log(err)
             alert(err.response.data.msg)
             dispatch({type:GET_ERRORS, payload:err.response.data})
         }
@@ -32,7 +32,7 @@ const frontEndIP= require('../../config/URLS').frontEndIP;
 };
 //LOG IN GET THE TOKEN  
 export const loginUser = userData => dispatch =>{
-    console.log(userData)
+    //console.log(userData)
 
     axios.post(`${backEndIP}/routes/api/users/login`,userData)
     .then(res => {
@@ -77,7 +77,7 @@ export const loginWithGoogle = userData => dispatch =>{
      dispatch(setCurrentUser(data));     
     })
     .catch(err=>{
-        console.log(err)
+        //console.log(err)
         alert(err)
         dispatch({
             type:GET_ERRORS,

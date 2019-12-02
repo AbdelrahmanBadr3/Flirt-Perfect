@@ -66,7 +66,7 @@ return(
     }else{
       const tempCurrent= this.state.currentQuestion+1;
       this.setState({ currentQuestion: tempCurrent })
-      console.log("here")
+      //console.log("here")
       window.location.href=`${frontEndIP}/matchingList`
       this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
      

@@ -23,7 +23,7 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
         gender:user.gender
     }
     const currQuiz = await Quiz.findOne({users: {$elemMatch: {id:user._id, name:user.name}}})
-    console.log(currQuiz)
+    //console.log(currQuiz)
     if(!currQuiz){
     const quiz = await Quiz.findOne({sequence})
     if(!quiz) {
@@ -35,21 +35,21 @@ router.post('/user', passport.authenticate('jwt', { session: false }), async (re
         await Quiz.create(quizSchema)
     }else{        
         quiz.users.unshift(userSchema)
-        console.log(quiz.users)
+        //console.log(quiz.users)
         await Quiz.findOneAndUpdate({sequence},{users:quiz.users})
     }
 
     const quizAfterAnswer = await Quiz.findOne({sequence})
     
     let users=quizAfterAnswer.users.filter(tempuser=>user.gender!==tempuser.gender)
-    console.log(users)
-    console.log(user)
+    //console.log(users)
+    //console.log(user)
     return res.json({ msg:"Quiz was created successfully" ,data: users});
 }else{
 
     let users=currQuiz.users.filter(tempuser=>user.gender!==tempuser.gender)
-    console.log(users)
-    console.log(user)
+    //console.log(users)
+    //console.log(user)
     res.json({ msg:"Quiz was taken before" ,data: users});
 }
 }
@@ -64,18 +64,18 @@ router.get('/user', passport.authenticate('jwt', { session: false }), async (req
         const user= await User.findById(userID)
 
         const currQuiz = await Quiz.findOne({users: {$elemMatch: {id:user._id, name:user.name}}})
-        console.log(currQuiz)
+        //console.log(currQuiz)
 
       
         if(! ( currQuiz === null ||
             currQuiz === undefined ||
             (typeof currQuiz === 'object' && Object.keys(currQuiz).length === 0) ||
             (typeof currQuiz === 'string' && currQuiz.trim().length === 0))){
-            console.log("currQuiz")
+            //console.log("currQuiz")
 
         let users=currQuiz.users.filter(tempuser=>user.gender!==tempuser.gender)
-        console.log(users)
-        console.log(user)
+        //console.log(users)
+        //console.log(user)
         return res.json({ msg:"MatchingList was fetched successfully" ,data: users});
     }else{
 

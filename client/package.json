@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
-    "@fortawesome/fontawesome-free-regular": "^5.0.13",
-    "@fortawesome/fontawesome-free-solid": "^5.0.13",
-    "@fortawesome/fontawesome-svg-core": "^1.2.20",
-    "@fortawesome/react-fontawesome": "^0.1.7",
     "axios": "^0.18.0",
     "bootstrap-material-icons": "^2.2.0",
     "firebase": "^6.6.0",
