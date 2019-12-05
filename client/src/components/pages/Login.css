@@ -82,11 +82,11 @@
   font-weight: bold;
  
   position: absolute;
-  top: 99%;
+  top: 87%;
   left: 25%;
   transform: translate(0, -5%);
   z-index: 2;
   width:45%;
   height: 45%;
-  padding: 20px;
+  padding: 2%;
 }

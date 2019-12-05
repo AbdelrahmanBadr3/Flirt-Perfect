@@ -21,3 +21,13 @@ services:
             - "3333:3333"
         volumes:
             - ./server:/app
+        links:
+            - mongo
+        depends_on:
+            - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - '27017:27017'
+

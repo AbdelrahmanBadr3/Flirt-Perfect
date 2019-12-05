@@ -4,9 +4,12 @@ const users = require('./routes/api/users');
 const questions = require('./routes/api/questions');
 const answers = require('./routes/api/quizzes');
 const app = express();
-const db = require('./config/keys_dev').mongoURI;
+const db = require('./config/keys_dev.json').mongoURI;
 const cors = require('./node_modules/cors/lib')
 
+let dbDocker = require('./config/keys_dev.json').dbURI;
+
+//"mongodb://mongo:27017/aclDB"
 app.use(cors())
 mongoose
     .connect(db, 
