@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from './types'
-const backEndIP= require('../../config/URLS').backEndIP;
+const backEndIP= require('../../config/URLS.json').backEndIP;
 
 export const setQuestions = () => dispatch =>{
     ////console.log("questions")

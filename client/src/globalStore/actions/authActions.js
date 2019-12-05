@@ -3,8 +3,8 @@ import setAuthToken from '../../utils/setAuthToken';
 import {GET_ERRORS, SET_CURRENT_USER,IS_SIGNEDUP} from './types'
 import jwt_decode from 'jwt-decode/lib';
 import firebase from "firebase"
-const backEndIP= require('../../config/URLS').backEndIP;
-const frontEndIP= require('../../config/URLS').frontEndIP;
+const backEndIP= require('../../config/URLS.json').backEndIP;
+const frontEndIP= require('../../config/URLS.json').frontEndIP;
 
   //register user 
 
@@ -65,7 +65,7 @@ export const loginWithGoogle = userData => dispatch =>{
 
     axios.post(`${backEndIP}/routes/api/users/googleSignIN`,userData)
     .then(res => {
-        //console.log("user")
+        console.log(res)
 
      const {token ,data} = res.data ;  
     // console.log(res.data)

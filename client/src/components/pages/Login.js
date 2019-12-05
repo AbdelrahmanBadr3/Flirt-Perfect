@@ -9,7 +9,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import "react-datepicker/dist/react-datepicker.css";
 import './Login.css';
 const fbConfig = require('../../config/firebase');
-const frontEndIP= require('../../config/URLS').frontEndIP;
+const frontEndIP= require('../../config/URLS.json').frontEndIP;
 
 
 firebase.initializeApp(fbConfig);

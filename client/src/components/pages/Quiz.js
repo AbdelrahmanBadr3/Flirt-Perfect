@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import QuizTamplate from './QuizTemplate'
 import './Quiz.css';
-const frontEndIP= require('../../config/URLS').frontEndIP;
+const frontEndIP= require('../../config/URLS.json').frontEndIP;
 
 class Quiz extends Component {
  
