@@ -8,14 +8,14 @@ LICENSE
 Package.json
 Server/
         Package.json
-    .env(to create .env, check client/
-                        package.json
+	.env(to create .env, check client/
+						package.json
 
 -Usage (run fullstack app on your machine)
 Prerequirements:
-    ï    MongoDB
-    ï    Node ^10.0.0
-    ï    npm
+	ï	MongoDB
+	ï	Node ^10.0.0
+	ï	npm
  
 
 Client-side usage(PORT: 3333)
@@ -82,7 +82,7 @@ Docker file for the Back-end(Server side):
 
   
 
-    Same as the front end (Client -side) but it exposes on port 3333 and we install also python then         we install Bcrypt library that is used for Encryption.
+	Same as the front end (Client -side) but it exposes on port 3333 and we install also python then 		we install Bcrypt library that is used for Encryption.
 
 
 
@@ -92,7 +92,7 @@ Docker file for the Back-end(Server side):
 
 Docker-compose:
 
-        
+		
 
 
 
@@ -140,47 +140,47 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
 
 -Dependencies:
 Client-side:
- "bootstrap-material-icons": "^2.2.0",
-    "firebase": "^6.6.0",
-    "font-awesome": "^4.7.0",
-    "jwt-decode": "^2.2.0",
-    "react": "^16.8.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-datepicker": "^2.10.1",
-    "react-dom": "^16.8.6",
-    "react-firebaseui": "^4.0.0",
+ "bootstrap-material-icons": "^2.2.0", "in order to display a special icons"
+    "firebase": "^6.6.0", "to connect to google api through it"
+    "font-awesome": "^4.7.0", "to display some icons"
+    "jwt-decode": "^2.2.0", "used in decoding the password"
+    "react": "^16.8.0", "the applictation itself"
+    "react-bootstrap": "^1.0.0-beta.16", "styling frontend"
+    "react-datepicker": "^2.10.1", 
+    "react-dom": "^16.8.6", "provide dom specific methods"
+    "react-firebaseui": "^4.0.0", "used to integerate with firebase"
     "react-fontawesome": "^1.7.1",
     "react-inlinesvg": "^0.8.4",
     "react-moment": "^0.9.6",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^5.0.0",
+    "react-redux": "^6.0.0", "provides a React component called Provider, which makes our application store available throughout our entire application"
+    "react-router-dom": "^5.0.0", 
     "react-scripts": "^2.1.8",
-    "react-select": "^2.4.3",
+    "react-select": "^2.4.3", "to select an item from a list"
     "react-transition-group": "^4.3.0",
-    "redux-thunk": "^2.3.0",
+    "redux-thunk": "^2.3.0", "is a middleware that lets you call action creators that return a function instead of an action object"
     "store": "^2.0.12",
     "styled-components": "^4.2.0",
-    "redux": "^4.0.0",
+    "redux": "^4.0.0", "provides a React component called Provider, which makes our application store available throughout our entire application"
     "moment": "^2.24.0"
 
 Server-side:
-"bcrypt": "^3.0.5",
-        "bcryptjs": "^2.4.3",
+"bcrypt": "^3.0.5", "hashing the password"
+        "bcryptjs": "^2.4.3", 
         "bootstrap": "^4.3.1",
         "cors": "^2.8.5",
         "crypto": "^1.0.1",
         "crypto-js": "^3.1.9-1",
         "express": "^4.16.4",
         "i": "^0.3.6",
-        "joi": "^14.3.1",
+        "joi": "^14.3.1", "used for the validations"
         "joi-objectid": "^2.0.0",
         "jsonwebtoken": "^8.5.1",
-        "jwt-decode": "^2.2.0",
+        "jwt-decode": "^2.2.0",  ="used in decoding the password"
         "mongoose": "^5.4.22",
         "mongoose-type-url": "^1.0.5",
-        "passport": "^0.4.0",
-        "passport-jwt": "^4.0.0",
-        "passport-local": "^1.0.0"
+        "passport": "^0.4.0", "used for authentication"
+        "passport-jwt": "^4.0.0", "used for authentication"
+        "passport-local": "^1.0.0" "used for authentication"
 
 -Config file:
 in the backend "Server-side":it contains the passport file which is used for authentication and it contains the connection with the database which is mongoDB
