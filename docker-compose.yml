@@ -1,10 +1,6 @@
+
 version: "3"
 services:
-    mongo:
-        container_name: mongo
-        image: mongo
-        ports:
-            - 27017:27017
     frontend:
         container_name: app_fornt_end
         build:
@@ -14,7 +10,7 @@ services:
         ports:
             - "80:3000"
         volumes:
-            - ./client:/usr/src/app
+            - ./client:/app
     backend:
         container_name: app_back_end
         build:
@@ -24,6 +20,14 @@ services:
         ports:
             - "3333:3333"
         volumes:
-            - ./server:/usr/src/app
+            - ./server:/app
+        links:
+            - mongo
         depends_on:
             - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - '27017:27017'
+

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {addTOSequence,setAnswer,getMatchingList } from '../../globalStore/actions/quizActions'
 import QuizTamplate from './QuizTemplate'
 import './Quiz.css';
+const frontEndIP= require('../../config/URLS.json').frontEndIP;
 
 class Quiz extends Component {
  
@@ -65,8 +66,8 @@ return(
     }else{
       const tempCurrent= this.state.currentQuestion+1;
       this.setState({ currentQuestion: tempCurrent })
-      console.log("here")
-      window.location.href="http://206.189.73.177/matchingList"
+      //console.log("here")
+      window.location.href=`${frontEndIP}/matchingList`
       this.props.setAnswer(this.state.sequence,this.props.auth.user.id);
      
 

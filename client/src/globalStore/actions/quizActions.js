@@ -1,14 +1,14 @@
 import axios from 'axios';
 import {GET_ERRORS,SET_QUESTIONS,SET_ANSWER,ADD_TO_SEQUENCE,Add_Matching_List} from './types'
-const URL='http://206.189.73.177:3333'
+const backEndIP= require('../../config/URLS.json').backEndIP;
 
 export const setQuestions = () => dispatch =>{
-    console.log("questions")
+    ////console.log("questions")
 
-    axios.get(`${URL}/routes/api/questions`)
+    axios.get(`${backEndIP}/routes/api/questions`)
     .then(res => {
      const questions = res.data.data ;   
-     console.log(questions)
+     //console.log(questions)
      localStorage.setItem('questions',questions);
      dispatch(storeQuestions(questions));  
     })
@@ -25,18 +25,16 @@ export const addTOSequence = sequence => dispatch =>{
      dispatch(addSequence(sequence));  
 };
 export const setAnswer = (sequence,id) => dispatch =>{
-    console.log("here1")
-    console.log(sequence)
-    console.log(id)
+    //console.log("here1")
+    //console.log(sequence)
+    //console.log(id)
     
     
-    axios.post(`${URL}/routes/api/quizzes/user`,{sequence})
+    axios.post(`${backEndIP}/routes/api/quizzes/user`,{sequence})
     .then(res => {
      const users = res.data.data ;   
-     console.log(res.data)
-     //ocalStorage.setItem('Matching Users',users);
+     //console.log(res.data)
      dispatch(addMatchingList(users)); 
-     //dispatch(storeQuestions(questions));  
     })
     .catch(err=>
         dispatch({
@@ -46,15 +44,13 @@ export const setAnswer = (sequence,id) => dispatch =>{
     );
 };
 export const getMatchingList = () => dispatch =>{
-    console.log("hereNadine")
+    ////console.log("hereNadine")
 
-    axios.get(`${URL}/routes/api/quizzes/user`)
+    axios.get(`${backEndIP}/routes/api/quizzes/user`)
     .then(res => {
      const users = res.data.data ;   
-     console.log(res.data)
-     //ocalStorage.setItem('Matching Users',users);
+     //console.log(res.data)
      dispatch(addMatchingList(users)); 
-     //dispatch(storeQuestions(questions));  
     })
     .catch(err=>
         dispatch({
