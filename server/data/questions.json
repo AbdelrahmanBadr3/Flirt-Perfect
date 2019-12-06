@@ -1,0 +1,13 @@
+{"data":[
+    {"answers":["Gotta study for finals. ","Get a bunch of friends and PARTY!","I wanna spend some time with my partner","Movie night and some good food"],"question":"It's Friday night. What will you do?","weight":5},
+    {"answers":["HAHAHA , what Reading?? ","Something nonfiction","Romance","Horror"],"question":"What's your favorite book genre?","weight":10},
+    {"answers":["Red ","Black","Pink","I don't care"],"question":"What's your favorite colour?","weight":15},
+    {"answers":["Anyone who's good looking ","People who academic dreams","Someone knows me and appreciates me","No one really"],"question":"Who have you been attracted to in the past? ","weight":20},
+    {"answers":["Work/School","The bar","Gym","I don't really get out much"],"question":"Where do you go to meet people? ","weight":25},
+    {"answers":["Smooth","Average","Slightly awkward","A total disaster"],"question":"How are you on a first date?","weight":30},
+    {"answers":["Having fun with friends","My career","Staying in shape","My studies"],"question":"What's your top priority right now?","weight":35},
+    {"answers":["Carribean cruise","Sightseeing in Europe","Beach resort","Outdoor camping"],"question":"What’s your ideal vacation?","weight":40},
+    {"answers":["The Notebook","The longest ride","Titanic","Eat pray love"],"question":"Pick your favorite romance movie?","weight":45},
+    {"answers":["Moving out of your parent's place","Moving to a new city","Going on a vacation","I am not sure"],"question":"What are you looking forward to most this year?","weight":50}
+    ]
+}

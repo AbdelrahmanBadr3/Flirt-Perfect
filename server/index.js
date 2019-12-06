@@ -4,10 +4,11 @@ const users = require('./routes/api/users');
 const questions = require('./routes/api/questions');
 const answers = require('./routes/api/quizzes');
 const app = express();
-const db = require('./config/keys_dev.json').mongoURI;
+const {setQuestions} = require('./services/setQuestions');
 const cors = require('./node_modules/cors/lib')
 
 let dbDocker = require('./config/keys_dev.json').dbURI;
+let db = require('./config/keys_dev.json').mongoURI;
 
 //"mongodb://mongo:27017/aclDB"
 app.use(cors())
@@ -15,7 +16,10 @@ mongoose
     .connect(db, 
       { useNewUrlParser: true ,useUnifiedTopology: true}
       )
-    .then(() => console.log('Connected to MongoDB'))
+    .then(() => {
+      console.log('Connected to MongoDB')
+      setQuestions()
+    })
     .catch(err => console.log(err))
 
     app.use(function(req, res, next) {
