@@ -137,7 +137,7 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
 - Dependencies:
   
   <details>
-<summary> - Client-side/summary>
+<summary> - Client-side </summary>
         - "bootstrap-material-icons": "^2.2.0", "in order to display a special icons"
         - "firebase": "^6.6.0", "to connect to google api through it"
         - "font-awesome": "^4.7.0", "to display some icons"
@@ -164,7 +164,7 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
 
  
   	<details>
- <summary> - Server-side/summary>
+ <summary> - Server-side </summary>
         - "bcrypt": ">=5.0.0" , "hashing the password"
         - "bcryptjs": "^2.4.3", 
         - "bootstrap": "^4.3.1",
