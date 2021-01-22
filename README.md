@@ -135,9 +135,7 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
 
 
 - Dependencies:
-  
-  <details>
-<summary> - Client-side </summary>
+  - Client-side 
         - "bootstrap-material-icons": "^2.2.0", "in order to display a special icons"
         - "firebase": "^6.6.0", "to connect to google api through it"
         - "font-awesome": "^4.7.0", "to display some icons"
@@ -160,11 +158,7 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
         - "styled-components": "^4.2.0",
         - "redux": "^4.0.0", "provides a React component called Provider, which makes our application store available throughout our entire application"
         - "moment": "^2.24.0"
-   </details>
-
- 
-  	<details>
- <summary> - Server-side </summary>
+  - Server-side 
         - "bcrypt": ">=5.0.0" , "hashing the password"
         - "bcryptjs": "^2.4.3", 
         - "bootstrap": "^4.3.1",
@@ -182,7 +176,7 @@ The server and the client-side are deployed on ìDigital Oceanî using IP:206.18
         - "passport": "^0.4.0", "used for authentication"
         - "passport-jwt": "^4.0.0", "used for authentication"
         - "passport-local": "^1.0.0" "used for authentication"
-	</details>
+
 
 - Config file:
 in the backend "Server-side":it contains the passport file which is used for authentication and it contains the connection with the database which is mongoDB
